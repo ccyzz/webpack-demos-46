@@ -40,7 +40,12 @@ module.exports = {
       // 当匹配到以 /\.(png|svg|jpg|gif)$/ 结尾的文件的时候，使用 file-loader 来处理
       test: /\.(png|svg|jpg|gif)$/,
       use: [
-        'file-loader'
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 3145728
+          }
+        }
       ]
     }]
   }

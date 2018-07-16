@@ -12,6 +12,7 @@ module.exports = {
   },
   module: {
     rules: [{ // 这里用来配置打包规则
+      // yarn add -D css-loader style-loader
       // 当 test 匹配到已 .css 结尾的资源的时候， use 使用 css-loader 和 style-loader 去加载处理
       // css-loader 的作用是把 css 代码转换为一个 JavaScript 模块
       // style-loader 的作用是负责把 JavaScript 模块生成一个 style 节点插入页面的 head 头部
@@ -21,6 +22,20 @@ module.exports = {
         'style-loader',
         'css-loader'
       ]
+    }, {
+      // 安装：yarn add -D less less-loader
+      // 当匹配到以 .less 结尾的资源的时候，使用 less-loader 打包处理
+      // 注意：less-load 依赖 less
+      // less-loader 只能把 less 转成 css
+      // 如果需要在网页中能看到，还需要配置 style-loader、css-loader
+      test: /\.less$/,
+      use: [{
+        loader: 'style-loader' // creates style nodes from JS strings
+      }, {
+        loader: 'css-loader' // translates CSS into CommonJS
+      }, {
+        loader: 'less-loader' // compiles Less to CSS
+      }]
     }]
   }
 }

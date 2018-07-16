@@ -3,13 +3,25 @@
 // 由于 webpack 本身是基于 Node 开发的，所以这个配置文件中我们可以使用 Node.js 代码
 
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   output: { // 可选的，默认打包到 dist/main.js 中
     path: path.join(__dirname, './dist/'), // 指定打包的结果存储目录（必须是绝对路径）
-    filename: 'bundle.js' // 指定打包的结果文件名称
+    filename: 'main.js' // 指定打包的结果文件名称
   },
+  plugins: [
+    // 把 index.html 打包到结果目录中
+    // title 可以用来指定 index.html 的 title
+    // 它还可以把结果 JavaScript 文件自动引入 index.html 文件中
+    // 这个插件还可以用来压缩 HTML 等作用
+    // 参考文档：https://github.com/jantimon/html-webpack-plugin
+    new HtmlWebpackPlugin({
+      title: 'Output Management',
+      template: './index.html'
+    })
+  ],
   module: {
     rules: [{ // 这里用来配置打包规则
       // yarn add -D css-loader style-loader
@@ -39,14 +51,12 @@ module.exports = {
     }, {
       // 当匹配到以 /\.(png|svg|jpg|gif)$/ 结尾的文件的时候，使用 file-loader 来处理
       test: /\.(png|svg|jpg|gif)$/,
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: 3145728
-          }
+      use: [{
+        loader: 'url-loader',
+        options: {
+          limit: 3145728
         }
-      ]
+      }]
     }]
   }
 }

@@ -4,10 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "css-loader": "^1.0.0",
+    "style-loader": "^0.21.0",
     "webpack": "^4.16.0",
     "webpack-cli": "^3.0.8"
   },
   "scripts": {
-    "build": "webpack src/index.js"
+    "build": "webpack"
   }
 }

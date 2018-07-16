@@ -1,3 +1,9 @@
 body {
   background-color: hotpink;
 }
+
+.box {
+  width: 200px;
+  height: 200px;
+  background-image: url('../img/00.jpg');
+}

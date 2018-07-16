@@ -6,7 +6,7 @@ const path = require('path')
 
 module.exports = {
   entry: './src/index.js',
-  output: {
+  output: { // 可选的，默认打包到 dist/main.js 中
     path: path.join(__dirname, './dist/'), // 指定打包的结果存储目录（必须是绝对路径）
     filename: 'bundle.js' // 指定打包的结果文件名称
   },
@@ -36,6 +36,12 @@ module.exports = {
       }, {
         loader: 'less-loader' // compiles Less to CSS
       }]
+    }, {
+      // 当匹配到以 /\.(png|svg|jpg|gif)$/ 结尾的文件的时候，使用 file-loader 来处理
+      test: /\.(png|svg|jpg|gif)$/,
+      use: [
+        'file-loader'
+      ]
     }]
   }
 }

@@ -11,6 +11,10 @@ module.exports = {
     path: path.join(__dirname, './dist/'), // 指定打包的结果存储目录（必须是绝对路径）
     filename: 'main.js' // 指定打包的结果文件名称
   },
+  // production 生产模式，会对代码进行优化压缩
+  // development 开发模式，不会进行优化压缩
+  // 优化压缩比较耗时，所以建议在开发过程中使用 development 模式，上线部署的使用开启 production 模式打包
+  mode: 'development',
   plugins: [
     // 把 index.html 打包到结果目录中
     // title 可以用来指定 index.html 的 title
@@ -49,7 +53,7 @@ module.exports = {
         loader: 'less-loader' // compiles Less to CSS
       }]
     }, {
-      // 当匹配到以 /\.(png|svg|jpg|gif)$/ 结尾的文件的时候，使用 file-loader 来处理
+      // 当匹配到以 /\.(png|svg|jpg|gif)$/ 结尾的文件的时候，使用 url-loader 来处理
       test: /\.(png|svg|jpg|gif)$/,
       use: [{
         loader: 'url-loader',
@@ -57,6 +61,11 @@ module.exports = {
           limit: 3145728
         }
       }]
+    }, {
+      test: /\.(woff|woff2|eot|ttf|otf)$/,
+      use: [
+        'file-loader'
+      ]
     }]
   }
 }

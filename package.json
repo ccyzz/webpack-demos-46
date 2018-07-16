@@ -16,5 +16,8 @@
   },
   "scripts": {
     "build": "webpack"
+  },
+  "dependencies": {
+    "bootstrap": "3.3.7"
   }
 }

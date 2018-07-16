@@ -10,5 +10,6 @@ import foo from './foo'
 // 需要使用特定 loader（加载器） 才可以
 import './css/main.css'
 import './less/main.less'
+import 'bootstrap/dist/css/bootstrap.css'
 
 foo()
